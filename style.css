@@ -1,0 +1,48 @@
+.conteiner {
+    width     : 661px;
+    height    : 763px;
+    background: #C4C4C4;
+    margin    : 0 auto;
+    padding   : 62px;
+}
+
+.list-name {
+    margin-top: 20px;
+}
+
+.item {
+    border       : 1px solid chartreuse;
+    background   : white;
+    cursor       : pointer;
+    font-size    : 30px;
+    padding      : 10px;
+    margin-bottom: 5px;
+}
+
+.errorLimit {
+    font-size : 20px;
+    background: #d61a1a;
+    padding   : 15px;
+    display   : inline-block;
+    color     : whitesmoke;
+    width     : 500px;
+}
+
+.noSearch {
+    font-size : 20px;
+    background: #897373;
+    padding   : 15px;
+    display   : inline-block;
+    color     : whitesmoke;
+    width     : 500px;
+}
+
+.form-search {
+    display       : flex;
+    flex-direction: column;
+    width         : 200px;
+}
+
+label {
+    padding-bottom: 15px;
+}
