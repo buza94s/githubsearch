@@ -84,7 +84,7 @@ const addResult = (e) => {
 const getGit = (search) => {
   try {
     fetch(
-      `https://api.github.com/search/repositories?q=${search}+language:assembly&sort=stars&order=desc`
+      `https://api.github.com/search/repositories?q=${search}&sort=stars&order=desc`
     )
       .then((r) => {
         if (!r.ok) {
