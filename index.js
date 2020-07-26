@@ -6,12 +6,12 @@ const getInput = () => {
   input.addEventListener("change", () => {
     let form = document.forms.search;
     let search = form.elements.search;
-    if (search.value === "") return togglList(); //очищаем контент если инпут пустой
+    if (search.value === "") return removeList(); //очищаем контент если инпут пустой
     getGit(search.value);
   });
 };
 
-const togglList = () => {
+const removeList = () => {
   //проверяем заполененность контенра поиска
   const togglItem = document.querySelector(".list-name");
   if (togglItem !== null) togglItem.remove();
@@ -19,7 +19,7 @@ const togglList = () => {
 
 const noSearchContent = () => {
   //Ничего не нашли
-  togglList();
+  removeList();
   const noSearch = document.createElement("div");
   noSearch.classList.add("noSearch");
   noSearch.textContent = "Результатов нет";
@@ -31,7 +31,7 @@ const noSearchContent = () => {
 
 const errorLimit = () => {
   //Превысили лимит
-  togglList();
+  removeList();
   const noSearch = document.createElement("div");
   noSearch.classList.add("errorLimit");
   noSearch.textContent =
@@ -113,7 +113,7 @@ const getGit = (search) => {
           });
           fragment.append(list);
         }
-        togglList();
+        removeList();
         searchContent.append(fragment);
       })
       .catch((e) => {});
