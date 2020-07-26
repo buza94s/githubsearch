@@ -17,12 +17,6 @@ const togglList = () => {
   if (togglItem !== null) togglItem.remove();
 };
 
-const togglimitCount = () => {
-  //проверяем наличие счетчика
-  const togglItem = document.querySelector(".limitCount");
-  if (togglItem !== null) togglItem.remove();
-};
-
 const noSearchContent = () => {
   //Ничего не нашли
   togglList();
@@ -51,7 +45,6 @@ const errorLimit = () => {
 const addResult = (e) => {
   //добавляем выбранный результат
   let result = arrSearch.find((item) => item.name == e.target.textContent);
-  console.log(result);
 
   const name = document.createElement("div");
   name.classList.add("name");
