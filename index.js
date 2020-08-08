@@ -7,7 +7,7 @@ const getInput = () => {
     let form = document.forms.search;
     let search = form.elements.search;
     if (search.value === "") return removeList(); //очищаем контент если инпут пустой
-    getGit(search.value);
+    resultSearchGit(search.value);
   });
 };
 
@@ -44,36 +44,36 @@ const errorLimit = () => {
 
 const addResult = (e) => {
   //добавляем выбранный результат
-  let result = arrSearch.find((item) => item.name == e.target.textContent);
+  let result = arrSearch.find((item) => item.id == e.target.id);
 
   const name = document.createElement("div");
-  name.classList.add("name");
+  name.classList.add("result-item__content-name");
   name.textContent = `Name: ${result.name}`;
 
   const author = document.createElement("div");
-  author.classList.add("author");
+  author.classList.add("result-item__content-author");
   author.textContent = `Owner: ${result.author}`;
 
   const star = document.createElement("div");
-  star.classList.add("star");
+  star.classList.add("result-item__content-star");
   star.textContent = `Stars: ${result.star}`;
 
   const content = document.createElement("div");
-  content.classList.add("content-item");
+  content.classList.add("result-item__content");
 
   content.append(name);
   content.append(author);
   content.append(star);
 
   const deleteitem = document.createElement("button");
-  deleteitem.classList.add("close");
+  deleteitem.classList.add("result-item__close", "close");
   deleteitem.addEventListener("click", (e) => {
     const btn = e.target;
     btn.parentElement.remove();
   });
 
   const resultItem = document.createElement("div");
-  resultItem.classList.add("result-item");
+  resultItem.classList.add("result__item", "result-item");
   resultItem.append(content);
   resultItem.append(deleteitem);
 
@@ -81,7 +81,7 @@ const addResult = (e) => {
   retustContent.append(resultItem);
 };
 
-const getGit = (search) => {
+const resultSearchGit = (search) => {
   try {
     fetch(
       `https://api.github.com/search/repositories?q=${search}&sort=stars&order=desc`
@@ -97,15 +97,17 @@ const getGit = (search) => {
         if (r.items.length === 0) return noSearchContent();
         let lengthArr = r.items.length > 5 ? 5 : r.items.length; //выводим количество результатов, не больше 5
         const list = document.createElement("div");
-        list.classList.add("list-name");
+        list.classList.add("search-content__list-name", "list-name");
         for (let i = 0; i < lengthArr; i++) {
           arrSearch.push({
+            id: r.items[i].id,
             name: r.items[i].name,
             author: r.items[i].owner.login,
             star: r.items[i].stargazers_count,
           });
           const item = document.createElement("div");
-          item.classList.add("item");
+          item.classList.add("list-name__item");
+          item.setAttribute("id", `${r.items[i].id}`);
           item.textContent = r.items[i].name;
           list.append(item);
           item.addEventListener("click", (e) => {

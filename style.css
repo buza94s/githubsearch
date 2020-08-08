@@ -2,15 +2,18 @@
     width     : 661px;
     height    : 763px;
     background: #C4C4C4;
-    margin    : 0 auto;
     padding   : 62px;
 }
 
-.list-name {
+.body__conteiner {
+    margin: 0 auto;
+}
+
+.search-content__list-name {
     margin-top: 20px;
 }
 
-.item {
+.list-name__item {
     border       : 1px solid chartreuse;
     background   : white;
     cursor       : pointer;
@@ -37,7 +40,7 @@
     width     : 500px;
 }
 
-.form-search {
+.search-content__form-search {
     display       : flex;
     flex-direction: column;
     width         : 200px;
@@ -47,11 +50,11 @@ label {
     padding-bottom: 15px;
 }
 
-.result {
+.conteiner__result {
     margin-top: 70px;
 }
 
-.result-item {
+.result__item {
     display        : flex;
     flex-direction : row;
     justify-content: space-between;
@@ -61,11 +64,11 @@ label {
     margin-bottom  : 5px;
 }
 
-.content-item {
+.result-item__content {
     font-size: 20px;
 }
 
-.result-item {
+.result__item {
     position: relative;
 }
 
