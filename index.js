@@ -1,18 +1,18 @@
 const searchContent = document.querySelector(".search-content");
-let arrSearch = [];
+let arrResultSearch = [];
 const getInput = () => {
-  //вещаем событие на инпут и передаем данные из инпута в getGit
-  const input = document.querySelector("input");
-  input.addEventListener("change", () => {
-    let form = document.forms.search;
-    let search = form.elements.search;
-    if (search.value === "") return removeList(); //очищаем контент если инпут пустой
-    resultSearchGit(search.value);
+  //вешаем событие на инпут и передаем данные из инпута в getGit
+  const inputSearch = document.querySelector("input");
+  inputSearch.addEventListener("change", () => {
+    let formSearch = document.forms.search;
+    let resultInputSearch = formSearch.elements.search;
+    if (resultInputSearch.value === "") return removeList(); //очищаем контент если инпут пустой
+    resultSearchGit(resultInputSearch.value);
   });
 };
 
 const removeList = () => {
-  //проверяем заполененность контенра поиска
+  //проверяем заполененность контента поиска
   const togglItem = document.querySelector(".list-name");
   if (togglItem !== null) togglItem.remove();
 };
@@ -20,13 +20,13 @@ const removeList = () => {
 const noSearchContent = () => {
   //Ничего не нашли
   removeList();
-  const noSearch = document.createElement("div");
-  noSearch.classList.add("noSearch");
-  noSearch.textContent = "Результатов нет";
-  const list = document.createElement("div");
-  list.classList.add("list-name");
-  list.append(noSearch);
-  searchContent.append(list);
+  const noResultSearch = document.createElement("div");
+  noResultSearch.classList.add("noSearch");
+  noResultSearch.textContent = "Результатов нет";
+  const divElementlist = document.createElement("div");
+  divElementlist.classList.add("list-name");
+  divElementlist.append(noSearch);
+  searchContent.append(divElementlist);
 };
 
 const errorLimit = () => {
@@ -36,27 +36,27 @@ const errorLimit = () => {
   noSearch.classList.add("errorLimit");
   noSearch.textContent =
     "Вы привысили лимит запросов. Попробуйте повторить позже";
-  const list = document.createElement("div");
-  list.classList.add("list-name");
-  list.append(noSearch);
-  searchContent.append(list);
+  const divElementlist = document.createElement("div");
+  divElementlist.classList.add("list-name");
+  divElementlist.append(noSearch);
+  searchContent.append(divElementlist);
 };
 
 const addResult = (e) => {
   //добавляем выбранный результат
-  let result = arrSearch.find((item) => item.id == e.target.id);
+  let resultContent = arrResultSearch.find((item) => item.id == e.target.id);
 
   const name = document.createElement("div");
   name.classList.add("result-item__content-name");
-  name.textContent = `Name: ${result.name}`;
+  name.textContent = `Name: ${resultContent.name}`;
 
   const author = document.createElement("div");
   author.classList.add("result-item__content-author");
-  author.textContent = `Owner: ${result.author}`;
+  author.textContent = `Owner: ${resultContent.author}`;
 
   const star = document.createElement("div");
   star.classList.add("result-item__content-star");
-  star.textContent = `Stars: ${result.star}`;
+  star.textContent = `Stars: ${resultContent.star}`;
 
   const content = document.createElement("div");
   content.classList.add("result-item__content");
@@ -65,9 +65,9 @@ const addResult = (e) => {
   content.append(author);
   content.append(star);
 
-  const deleteitem = document.createElement("button");
-  deleteitem.classList.add("result-item__close", "close");
-  deleteitem.addEventListener("click", (e) => {
+  const buttonElementdelete = document.createElement("button");
+  buttonElementdelete.classList.add("result-item__close", "close");
+  buttonElementdelete.addEventListener("click", (e) => {
     const btn = e.target;
     btn.parentElement.remove();
   });
@@ -99,7 +99,7 @@ const resultSearchGit = (search) => {
         const list = document.createElement("div");
         list.classList.add("search-content__list-name", "list-name");
         for (let i = 0; i < lengthArr; i++) {
-          arrSearch.push({
+          arrResultSearch.push({
             id: r.items[i].id,
             name: r.items[i].name,
             author: r.items[i].owner.login,
