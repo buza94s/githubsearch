@@ -75,7 +75,7 @@ const addResult = (e) => {
   const resultItem = document.createElement("div");
   resultItem.classList.add("result__item", "result-item");
   resultItem.append(content);
-  resultItem.append(deleteitem);
+  resultItem.append(buttonElementdelete);
 
   const retustContent = document.querySelector(".result");
   retustContent.append(resultItem);
